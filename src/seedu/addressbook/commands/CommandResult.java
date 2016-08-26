@@ -27,6 +27,13 @@ public class CommandResult {
     }
 
     /**
+     * Returns feedback message to be shown to the user.
+     */
+    public String getFeedbackToUser() {
+    	return this.feedbackToUser;
+    }
+    
+    /**
      * Returns list of persons relevant to the command command result, if any.
      */
     public Optional<List<? extends ReadOnlyPerson>> getRelevantPersons() {
