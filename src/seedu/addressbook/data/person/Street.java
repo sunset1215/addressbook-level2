@@ -8,7 +8,11 @@ public class Street {
         this.value = value;
     }
 
-    public String toString() {
+    public String getValue() {
         return this.value;
+    }
+    
+    public void setValue(String value) {
+        this.value = value;
     }
 }

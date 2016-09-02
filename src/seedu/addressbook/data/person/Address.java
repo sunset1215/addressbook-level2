@@ -17,6 +17,8 @@ public class Address {
     private static final int ADDRESS_STREET_INDEX = 1;
     private static final int ADDRESS_UNIT_INDEX = 2;
     private static final int ADDRESS_POSTAL_CODE_INDEX = 3;
+    
+    private static final int ADDRESS_NUMBER_OF_PARTS = 4;
 
     private Block block;
     private Street street;
@@ -46,14 +48,21 @@ public class Address {
      * Returns true if a given string is a valid person email.
      */
     public static boolean isValidAddress(String test) {
-        return (splitAddressByComma(test).length == 4) 
+        return (splitAddressByComma(test).length == ADDRESS_NUMBER_OF_PARTS) 
                 && test.matches(ADDRESS_VALIDATION_REGEX);
     }
 
+    /**
+     * Returns value of address
+     */
+    public String getValue() {
+        return this.toString();
+    }
+    
     @Override
     public String toString() {
-        String address = this.block.toString() + ", " + this.street.toString() + ", "
-                + this.unit.toString() + ", " + this.postalCode.toString();
+        String address = this.block.getValue() + ", " + this.street.getValue() + ", "
+                + this.unit.getValue() + ", " + this.postalCode.getValue();
         return address;
     }
 
