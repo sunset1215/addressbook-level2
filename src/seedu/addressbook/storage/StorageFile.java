@@ -46,6 +46,8 @@ public class StorageFile {
     private final JAXBContext jaxbContext;
 
     public final Path path;
+    // To handle case of new address book
+    private static boolean isMissingFileOnLoad = false;
 
     /**
      * @throws InvalidStorageFilePathException if the default path is invalid
@@ -117,10 +119,14 @@ public class StorageFile {
         File file = new File(filePath);
         
         try {
-            if (file.createNewFile()) {
-                System.out.println("Error : Storage file missing or deleted");
-                System.out.println("Current data has been written into a new file.");
-                System.out.println("Previous command will resume execution.");
+            // isMissingFileOnLoad separates the case of
+            // 1. new address book and 
+            // 2. address book deleted while the program is running
+            // the exception should only be thrown in the 2nd case
+            boolean isFileNew = file.createNewFile();
+            if (isFileNew && !isMissingFileOnLoad) {
+                throw new StorageOperationException(
+                        "Error : Storage file deleted while program is running");
             }
         } catch (IOException ioe) {
             throw new StorageOperationException("Error creating new file: " + filePath);
@@ -153,7 +159,10 @@ public class StorageFile {
         // create empty file if not found
         } catch (FileNotFoundException fnfe) {
             final AddressBook empty = new AddressBook();
+            isMissingFileOnLoad = true;
             save(empty);
+            // after a new address book is created on load, this state should return to false
+            isMissingFileOnLoad = false;
             return empty;
 
         // other errors

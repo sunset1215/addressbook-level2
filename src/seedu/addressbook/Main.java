@@ -108,6 +108,11 @@ public class Main {
             CommandResult result = command.execute();
             storage.save(addressBook);
             return result;
+        } catch (StorageOperationException soe) {
+            ui.showToUser(soe.getMessage());
+            String feedbackToUser = "Current data has been written into a new file." + "\n"
+                    + "Previous command was executed successfully.";
+            return new CommandResult(feedbackToUser);
         } catch (Exception e) {
             ui.showToUser(e.getMessage());
             throw new RuntimeException(e);
