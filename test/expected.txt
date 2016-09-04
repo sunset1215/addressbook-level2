@@ -300,6 +300,20 @@
 || Enter command: || [Command entered:  exit]
 || Exiting Address Book as requested ...
 || ===================================================
+|| List of all tags added/deleted during this session:
+|| 	+ Betsy Choo [secretive]
+|| 	+ Charlie Dickson [school]
+|| 	+ Charlie Dickson [friends]
+|| 	+ Dickson Ee [friends]
+|| 	+ Esther Potato [tubers]
+|| 	+ Esther Potato [starchy]
+|| 	- Charlie Dickson [school]
+|| 	- Charlie Dickson [friends]
+|| 	- Esther Potato [tubers]
+|| 	- Esther Potato [starchy]
+|| 	- Betsy Choo [secretive]
+|| 	- Dickson Ee [friends]
+|| ===================================================
 || Good bye!
 || ===================================================
 || ===================================================

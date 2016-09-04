@@ -9,6 +9,7 @@ import seedu.addressbook.data.tag.Tag;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -77,15 +78,41 @@ public class AddressBook {
      * Adds a person to the address book.
      * Also checks the new person's tags and updates {@link #allTags} with any new tags found,
      * and updates the Tag objects in the person to point to those in {@link #allTags}.
+     * Also add all tags added, if any, to the list of tag operations
      *
      * @throws DuplicatePersonException if an equivalent person already exists.
      */
     public void addPerson(Person toAdd) throws DuplicatePersonException {
         syncTagsWithMasterList(toAdd);
         allPersons.add(toAdd);
+        addToListOfTagOperations(toAdd, Tagging.OPERATION_ADD);
     }
 
     /**
+     * Adds a person's unique tag list to the list of tag operations
+     */
+    private void addToListOfTagOperations(ReadOnlyPerson toAdd, String operation) {
+    	Iterator<Tag> itr = toAdd.getTags().iterator();
+    	while (itr.hasNext()) {
+    		listOfTagOperations.add(new Tagging(toAdd, itr.next(), operation));
+    	}
+	}
+    
+    /**
+     * Add all persons' unique tag list to the list of tag operations
+     */
+    private void addAllToListOfTagOperations() {
+    	Iterator<Person> itrPerson = allPersons.iterator();
+    	while (itrPerson.hasNext()) {
+    		ReadOnlyPerson person = itrPerson.next();
+    		Iterator<Tag> itrTag = person.getTags().iterator();
+    		while (itrTag.hasNext()) {
+    			listOfTagOperations.add(new Tagging(person, itrTag.next(), Tagging.OPERATION_REMOVE));
+    		}
+    	}
+	}
+
+	/**
      * Adds a tag to the list of tags present in the address book.
      *
      * @throws DuplicateTagException if an equivalent tag already exists.
@@ -110,11 +137,13 @@ public class AddressBook {
 
     /**
      * Removes the equivalent person from the address book.
+     * Also add all tags removed, if any, to the list of tag operations
      *
      * @throws PersonNotFoundException if no such Person could be found.
      */
     public void removePerson(ReadOnlyPerson toRemove) throws PersonNotFoundException {
         allPersons.remove(toRemove);
+        addToListOfTagOperations(toRemove, Tagging.OPERATION_REMOVE);
     }
 
     /**
@@ -127,9 +156,12 @@ public class AddressBook {
     }
 
     /**
+     * Add all tags that are to be deleted into list of tag operations
      * Clears all persons and tags from the address book.
+     * 
      */
     public void clear() {
+    	addAllToListOfTagOperations();
         allPersons.clear();
         allTags.clear();
     }
@@ -146,5 +178,9 @@ public class AddressBook {
      */
     public UniqueTagList getAllTags() {
         return new UniqueTagList(allTags);
+    }
+    
+    public ArrayList<Tagging> getListOfTagOperations() {
+    	return listOfTagOperations;
     }
 }

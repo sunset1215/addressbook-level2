@@ -76,7 +76,10 @@ public class Main {
         System.exit(0);
     }
 
-    /** Reads the user command and executes it, until the user issues the exit command.  */
+    /** 
+     * Reads the user command and executes it, until the user issues the exit command.  
+     * Also display the list of tags added/deleted during the session when exiting the program.
+     */
     private void runCommandLoopUntilExitCommand() {
         Command command;
         do {
@@ -87,6 +90,8 @@ public class Main {
             ui.showResultToUser(result);
 
         } while (!ExitCommand.isExit(command));
+        
+        ui.showToUserListOfTagOperations(addressBook.getListOfTagOperations());
     }
 
     /** Updates the {@link #lastShownList} if the result contains a list of Persons. */

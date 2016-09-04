@@ -1,21 +1,30 @@
 package seedu.addressbook.data;
 
-import seedu.addressbook.data.person.Person;
+import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.tag.Tag;
 
+/**
+ * Represents a tag operation
+ */
 public class Tagging {
 
-	private final Person person;
+	private final ReadOnlyPerson person;
 	private final Tag tag;
 	private final String operation;
 	
-	private static final String OPERATION_ADD = "Add";
-	private static final String OPERATION_REMOVE = "Remove";
+	public static final String OPERATION_ADD = "+";
+	public static final String OPERATION_REMOVE = "-";
 	
-	public Tagging(Person person, Tag tag, String operation) {
+	public Tagging(ReadOnlyPerson person, Tag tag, String operation) {
 		this.person = person;
 		this.tag = tag;
 		this.operation = operation;
+	}
+	
+	@Override
+	public String toString() {
+		String tagging = operation + " " + person.getName() + " [" + tag.tagName + "]";
+		return tagging;
 	}
 	
 }
