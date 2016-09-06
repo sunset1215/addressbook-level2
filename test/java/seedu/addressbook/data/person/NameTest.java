@@ -28,7 +28,7 @@ public class NameTest {
     }
     
     @Test
-    public void testIsSimilar_differentCase() throws IllegalValueException {
+    public void testIsSimilar_otherHasDifferentCasesFromName() throws IllegalValueException {
         Name other = new Name("john k smith");
         assertTrue(MESSAGE_SIMILAR_NAMES, name.isSimilar(other));
     }
@@ -46,15 +46,17 @@ public class NameTest {
     }
     
     @Test
+    public void testIsSimilar_otherHasDifferentOrderFromName() throws IllegalValueException {
+        Name other = new Name("Smith John K");
+        assertTrue(MESSAGE_SIMILAR_NAMES, name.isSimilar(other));
+    }
+    
+    @Test
     public void testIsSimilar_otherIsNull() {
         Name other = null;
         assertFalse("Name should not be similar to null", name.isSimilar(other));
     }
     
-    @Test
-    public void testIsSimilar_otherHasDifferentOrderFromName() throws IllegalValueException {
-        Name other = new Name("Smith John K");
-        assertTrue(MESSAGE_SIMILAR_NAMES, name.isSimilar(other));
-    }
+    
     
 }
