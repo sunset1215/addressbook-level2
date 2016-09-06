@@ -53,7 +53,7 @@ public class Name {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Name // instanceof handles nulls
-                && this.fullName.equals(((Name) other).fullName)); // state check
+                        && this.fullName.equals(((Name) other).fullName)); // state check
     }
 
     @Override
@@ -72,13 +72,17 @@ public class Name {
         if (fullName.equalsIgnoreCase(other.fullName)) {
             return true;
         }
-        
+
         // other is subset of name
         if (other.isSubsetOf(this.fullName)) {
             return true;
         }
-        
-        
+
+        // other is superset of name (i.e. name is subset of other)
+        if (isSubsetOf(other.fullName)) {
+            return true;
+        }
+
         return false;
     }
 
@@ -86,15 +90,15 @@ public class Name {
         // names are padded with whitespace at the start and end so that checks are done against a whole word
         String lcPaddedSuperName = " " + superName.toLowerCase() + " ";
         String lcSubName = fullName.toLowerCase();
-        String[] lcSubParts = lcSubName.split("\\P{Alpha}+"); // splits on any non-alphabetic characters
-        
-        for (int i = 0; i < lcSubParts.length; i++) {
-            String paddedSubNamePart = " " + lcSubParts[i] + " ";
+        String[] lcSubNameParts = lcSubName.split("\\P{Alpha}+"); // splits on any non-alphabetic characters
+
+        for (int i = 0; i < lcSubNameParts.length; i++) {
+            String paddedSubNamePart = " " + lcSubNameParts[i] + " ";
             if (!lcPaddedSuperName.contains(paddedSubNamePart)) {
                 return false;
             }
         }
-        
+
         return true;
     }
 

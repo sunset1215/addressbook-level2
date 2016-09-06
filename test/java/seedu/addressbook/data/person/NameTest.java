@@ -38,5 +38,10 @@ public class NameTest {
         assertTrue("The 2 names should be similar", name.isSimilar(other));
     }
     
+    @Test
+    public void testIsSimilar_otherIsSupersetOfName() throws IllegalValueException {
+        Name other = new Name("John K Donald Smith");
+        assertTrue("The 2 names should be similar", name.isSimilar(other));
+    }
     
 }
