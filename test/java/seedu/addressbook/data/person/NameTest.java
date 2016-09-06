@@ -44,4 +44,10 @@ public class NameTest {
         assertTrue("The 2 names should be similar", name.isSimilar(other));
     }
     
+    @Test
+    public void testIsSimilar_otherIsNull() {
+        Name other = null;
+        assertFalse("Name should not be similar to null", name.isSimilar(other));
+    }
+    
 }
