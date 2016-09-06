@@ -65,12 +65,37 @@ public class Name {
      * Returns true of the other name is very similar to this name.
      * Two names are considered similar if
      * 1. they are in different cases
+     * 2. they are subset/superset of each other
      */
     public boolean isSimilar(Name other) {
+        // different case
         if (fullName.equalsIgnoreCase(other.fullName)) {
             return true;
         }
+        
+        // other is subset of name
+        if (other.isSubsetOf(this.fullName)) {
+            return true;
+        }
+        
+        
         return false;
+    }
+
+    private boolean isSubsetOf(String superName) {
+        // names are padded with whitespace at the start and end so that checks are done against a whole word
+        String lcPaddedSuperName = " " + superName.toLowerCase() + " ";
+        String lcSubName = fullName.toLowerCase();
+        String[] lcSubParts = lcSubName.split("\\P{Alpha}+"); // splits on any non-alphabetic characters
+        
+        for (int i = 0; i < lcSubParts.length; i++) {
+            String paddedSubNamePart = " " + lcSubParts[i] + " ";
+            if (!lcPaddedSuperName.contains(paddedSubNamePart)) {
+                return false;
+            }
+        }
+        
+        return true;
     }
 
 }
