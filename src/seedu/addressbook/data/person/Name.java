@@ -63,11 +63,14 @@ public class Name {
 
     /**
      * Returns true of the other name is very similar to this name.
-     * Two names are considered similar if ...
+     * Two names are considered similar if
+     * 1. they are in different cases
      */
     public boolean isSimilar(Name other) {
-        // TODO Auto-generated method stub
-        return true;
+        if (fullName.equalsIgnoreCase(other.fullName)) {
+            return true;
+        }
+        return false;
     }
 
 }
