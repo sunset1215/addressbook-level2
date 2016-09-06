@@ -9,6 +9,7 @@ import seedu.addressbook.data.exception.IllegalValueException;
 
 public class NameTest {
     
+    private static final String MESSAGE_SIMILAR_NAMES = "The 2 names should be similar";
     private Name name;
 
     @Before
@@ -29,25 +30,31 @@ public class NameTest {
     @Test
     public void testIsSimilar_differentCase() throws IllegalValueException {
         Name other = new Name("john k smith");
-        assertTrue("The 2 names should be similar", name.isSimilar(other));
+        assertTrue(MESSAGE_SIMILAR_NAMES, name.isSimilar(other));
     }
     
     @Test
     public void testIsSimilar_otherIsSubsetOfName() throws IllegalValueException {
         Name other = new Name("John Smith");
-        assertTrue("The 2 names should be similar", name.isSimilar(other));
+        assertTrue(MESSAGE_SIMILAR_NAMES, name.isSimilar(other));
     }
     
     @Test
     public void testIsSimilar_otherIsSupersetOfName() throws IllegalValueException {
         Name other = new Name("John K Donald Smith");
-        assertTrue("The 2 names should be similar", name.isSimilar(other));
+        assertTrue(MESSAGE_SIMILAR_NAMES, name.isSimilar(other));
     }
     
     @Test
     public void testIsSimilar_otherIsNull() {
         Name other = null;
         assertFalse("Name should not be similar to null", name.isSimilar(other));
+    }
+    
+    @Test
+    public void testIsSimilar_otherHasDifferentOrderFromName() throws IllegalValueException {
+        Name other = new Name("Smith John K");
+        assertTrue(MESSAGE_SIMILAR_NAMES, name.isSimilar(other));
     }
     
 }
