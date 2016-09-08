@@ -90,7 +90,7 @@ public class Main {
             ui.showResultToUser(result);
 
         } while (!ExitCommand.isExit(command));
-        
+
         ui.showToUserListOfTagOperations(addressBook.getListOfTagOperations());
     }
 

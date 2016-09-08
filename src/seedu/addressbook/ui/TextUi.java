@@ -29,7 +29,7 @@ public class TextUi {
 
     /** Format of indexed list item */
     private static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
-    
+
     /** Format of non-indexed list item */
     private static final String MESSAGE_NON_INDEXED_LIST_ITEM = "\t%s";
 
@@ -174,15 +174,15 @@ public class TextUi {
      * Shows a list of tags added/deleted during the session.
      */
     public void showToUserListOfTagOperations(ArrayList<Tagging> listOfTagOperations) {
-    	showToUser(MESSAGE_DISPLAY_LIST_OF_TAG_OPERATIONS);
-    	
-    	if (listOfTagOperations.size() == 0) {
-    		showToUser(MESSAGE_NO_TAG_OPERATIONS);
-    	} else {
-    		for (Tagging tagging : listOfTagOperations) {
-    			showToUser(String.format(MESSAGE_NON_INDEXED_LIST_ITEM, tagging.toString()));
-    		}
-    	}
-    	showToUser(DIVIDER);
+        showToUser(MESSAGE_DISPLAY_LIST_OF_TAG_OPERATIONS);
+
+        if (listOfTagOperations.size() == 0) {
+            showToUser(MESSAGE_NO_TAG_OPERATIONS);
+        } else {
+            for (Tagging tagging : listOfTagOperations) {
+                showToUser(String.format(MESSAGE_NON_INDEXED_LIST_ITEM, tagging.toString()));
+            }
+        }
+        showToUser(DIVIDER);
     }
 }

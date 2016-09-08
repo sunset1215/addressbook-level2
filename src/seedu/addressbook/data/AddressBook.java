@@ -92,27 +92,27 @@ public class AddressBook {
      * Adds a person's unique tag list to the list of tag operations
      */
     private void addToListOfTagOperations(ReadOnlyPerson toAdd, String operation) {
-    	Iterator<Tag> itr = toAdd.getTags().iterator();
-    	while (itr.hasNext()) {
-    		listOfTagOperations.add(new Tagging(toAdd, itr.next(), operation));
-    	}
-	}
-    
+        Iterator<Tag> itr = toAdd.getTags().iterator();
+        while (itr.hasNext()) {
+            listOfTagOperations.add(new Tagging(toAdd, itr.next(), operation));
+        }
+    }
+
     /**
      * Add all persons' unique tag list to the list of tag operations
      */
     private void addAllToListOfTagOperations() {
-    	Iterator<Person> itrPerson = allPersons.iterator();
-    	while (itrPerson.hasNext()) {
-    		ReadOnlyPerson person = itrPerson.next();
-    		Iterator<Tag> itrTag = person.getTags().iterator();
-    		while (itrTag.hasNext()) {
-    			listOfTagOperations.add(new Tagging(person, itrTag.next(), Tagging.OPERATION_REMOVE));
-    		}
-    	}
-	}
+        Iterator<Person> itrPerson = allPersons.iterator();
+        while (itrPerson.hasNext()) {
+            ReadOnlyPerson person = itrPerson.next();
+            Iterator<Tag> itrTag = person.getTags().iterator();
+            while (itrTag.hasNext()) {
+                listOfTagOperations.add(new Tagging(person, itrTag.next(), Tagging.OPERATION_REMOVE));
+            }
+        }
+    }
 
-	/**
+    /**
      * Adds a tag to the list of tags present in the address book.
      *
      * @throws DuplicateTagException if an equivalent tag already exists.
@@ -161,7 +161,7 @@ public class AddressBook {
      * 
      */
     public void clear() {
-    	addAllToListOfTagOperations();
+        addAllToListOfTagOperations();
         allPersons.clear();
         allTags.clear();
     }
@@ -179,8 +179,8 @@ public class AddressBook {
     public UniqueTagList getAllTags() {
         return new UniqueTagList(allTags);
     }
-    
+
     public ArrayList<Tagging> getListOfTagOperations() {
-    	return listOfTagOperations;
+        return listOfTagOperations;
     }
 }
