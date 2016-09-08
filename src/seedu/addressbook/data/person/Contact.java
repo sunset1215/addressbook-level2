@@ -5,31 +5,31 @@ package seedu.addressbook.data.person;
  */
 public class Contact {
 
-	private String value;
+    private String value;
     private boolean isPrivate;
-    
+
     public Contact() {
-    	this.value = "";
-    	this.isPrivate = false;
+        this.value = "";
+        this.isPrivate = false;
     }
-    
+
     public String getValue() {
-    	return this.value;
+        return this.value;
     }
-    
+
     public void setValue(String value) {
-    	this.value = value;
+        this.value = value;
     }
-    
+
     public void setIsPrivate(boolean isPrivate) {
-    	this.isPrivate = isPrivate;
+        this.isPrivate = isPrivate;
     }
-    
+
     @Override
     public String toString() {
         return value;
     }
-    
+
     @Override
     public int hashCode() {
         return value.hashCode();
@@ -38,5 +38,5 @@ public class Contact {
     public boolean isPrivate() {
         return isPrivate;
     }
-    
+
 }
