@@ -56,9 +56,9 @@ public class Address implements Printable {
         return isPrivate;
     }
 
-	@Override
-	public String getPrintableString() {
-		String printable = "Address: " + this.value;
-		return printable;
-	}
+    @Override
+    public String getPrintableString() {
+        String printable = "Address: " + this.value;
+        return printable;
+    }
 }

@@ -37,16 +37,16 @@ public class Utils {
         }
         return true;
     }
-    
+
     /**
      * Returns a concatenated version of the printable strings of each object.
      */
     public static String getPrintableString(Printable... printables){
-    	final StringBuilder concatenated = new StringBuilder();
-    	for (Printable printable : printables) {
-    		concatenated.append(printable.getPrintableString() + " ");
-    	}
-    	return concatenated.toString().trim();
+        final StringBuilder concatenated = new StringBuilder();
+        for (Printable printable : printables) {
+            concatenated.append(printable.getPrintableString() + " ");
+        }
+        return concatenated.toString().trim();
     }
-    
+
 }

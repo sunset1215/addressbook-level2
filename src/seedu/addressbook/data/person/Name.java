@@ -61,10 +61,10 @@ public class Name implements Printable {
         return fullName.hashCode();
     }
 
-	@Override
-	public String getPrintableString() {
-		String printable = "Name: " + this.fullName;
-		return printable;
-	}
+    @Override
+    public String getPrintableString() {
+        String printable = "Name: " + this.fullName;
+        return printable;
+    }
 
 }
