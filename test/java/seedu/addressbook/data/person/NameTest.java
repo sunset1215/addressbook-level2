@@ -18,45 +18,48 @@ public class NameTest {
     }
     
     @Test
-    public void testConstructor_throwIllegalValueExceptionIfContainNonAlphabeticCharacters() {
+    public void testConstructor_shouldThrowIllegalValueExceptionIfContainNonAlphabeticCharacters() {
         try {
             Name invalidName = new Name("1234!!");
             fail("Should throw IllegalValueException");
         } catch (IllegalValueException ive) {
-            assertEquals("Exception error message should be the same", ive.getMessage(), Name.MESSAGE_NAME_CONSTRAINTS);
+            assertEquals("Exception error message should be the same", 
+                    ive.getMessage(), Name.MESSAGE_NAME_CONSTRAINTS);
         }
     }
     
     @Test
-    public void testIsSimilar_otherHasDifferentCasesFromName() throws IllegalValueException {
+    public void testIsSimilar_otherHasDifferentCaseFromNameReturnTrue() 
+            throws IllegalValueException {
         Name other = new Name("john k smith");
         assertTrue(MESSAGE_SIMILAR_NAMES, name.isSimilar(other));
     }
     
     @Test
-    public void testIsSimilar_otherIsSubsetOfName() throws IllegalValueException {
+    public void testIsSimilar_otherIsSubsetOfNameReturnTrue() 
+            throws IllegalValueException {
         Name other = new Name("John Smith");
         assertTrue(MESSAGE_SIMILAR_NAMES, name.isSimilar(other));
     }
     
     @Test
-    public void testIsSimilar_otherIsSupersetOfName() throws IllegalValueException {
+    public void testIsSimilar_otherIsSupersetOfNameReturnTrue() 
+            throws IllegalValueException {
         Name other = new Name("John K Donald Smith");
         assertTrue(MESSAGE_SIMILAR_NAMES, name.isSimilar(other));
     }
     
     @Test
-    public void testIsSimilar_otherHasDifferentOrderFromName() throws IllegalValueException {
+    public void testIsSimilar_otherHasDifferentOrderFromNameReturnTrue() 
+            throws IllegalValueException {
         Name other = new Name("Smith John K");
         assertTrue(MESSAGE_SIMILAR_NAMES, name.isSimilar(other));
     }
     
     @Test
-    public void testIsSimilar_otherIsNull() {
+    public void testIsSimilar_otherIsNullReturnFalse() {
         Name other = null;
-        assertFalse("Name should not be similar to null", name.isSimilar(other));
+        assertFalse("Name should not be similar to a null", name.isSimilar(other));
     }
-    
-    
     
 }
