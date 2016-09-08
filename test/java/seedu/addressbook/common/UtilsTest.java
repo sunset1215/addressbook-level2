@@ -20,7 +20,7 @@ public class UtilsTest {
      * Test method for {@link seedu.addressbook.common.Utils#isAnyNull(java.lang.Object[])}.
      */
     @Test
-    public void testIsAnyNull_noNullArgs() {
+    public void testIsAnyNull_noNullArgsReturnFalse() {
         Object obj1 = new Integer(2);
         Object obj2 = new String("String object");
         assertFalse("Should have no null args", Utils.isAnyNull(obj1, obj2));
@@ -30,7 +30,7 @@ public class UtilsTest {
      * Test method for {@link seedu.addressbook.common.Utils#isAnyNull(java.lang.Object[])}.
      */
     @Test
-    public void testIsAnyNull_hasNullArgs() {
+    public void testIsAnyNull_hasNullArgsReturnTrue() {
         Object obj1 = null;
         Object obj2 = new String("String object");
         assertTrue("Should have at least 1 null args", Utils.isAnyNull(obj1, obj2));
@@ -40,7 +40,7 @@ public class UtilsTest {
      * Test method for {@link seedu.addressbook.common.Utils#elementsAreUnique(java.util.Collection)}.
      */
     @Test
-    public void testElementsAreUnique_hasNonUniqueElements() {
+    public void testElementsAreUnique_hasNonUniqueElementsReturnFalse() {
         String string1 = new String("This is string 1");
         String string2 = new String("This is string 2");
         String string3 = string1;
@@ -55,7 +55,7 @@ public class UtilsTest {
      * Test method for {@link seedu.addressbook.common.Utils#elementsAreUnique(java.util.Collection)}.
      */
     @Test
-    public void testElementsAreUnique_hasUniqueElements() {
+    public void testElementsAreUnique_hasUniqueElementsReturnTrue() {
         String string1 = new String("This is string 1");
         String string2 = new String("This is string 2");
         String string3 = new String("This is string 3");
