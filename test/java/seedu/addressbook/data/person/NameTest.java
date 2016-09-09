@@ -17,15 +17,10 @@ public class NameTest {
         name = new Name("John K Smith");
     }
 
-    @Test
-    public void constructor_containsNonAlphabeticCharacters_throwsIllegalValueException() {
-        try {
-            Name invalidName = new Name("1234!!");
-            fail("Should throw IllegalValueException");
-        } catch (IllegalValueException ive) {
-            assertEquals("Exception error message should be the same", 
-                    ive.getMessage(), Name.MESSAGE_NAME_CONSTRAINTS);
-        }
+    @Test (expected = IllegalValueException.class)
+    public void constructor_containsNonAlphabeticCharacters_throwsIllegalValueException()
+            throws IllegalValueException {
+        Name invalidName = new Name("1234!!!");
     }
 
     @Test
