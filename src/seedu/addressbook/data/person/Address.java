@@ -18,12 +18,7 @@ public class Address extends Contact {
      * @throws IllegalValueException if given address string is invalid.
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
-        super();
-        if (!isValidAddress(address)) {
-            throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
-        }
-        super.setValue(address);
-        super.setIsPrivate(isPrivate);
+        super(address.trim(), isPrivate, ADDRESS_VALIDATION_REGEX, MESSAGE_ADDRESS_CONSTRAINTS);
     }
 
     /**
