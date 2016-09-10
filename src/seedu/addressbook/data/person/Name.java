@@ -73,21 +73,10 @@ public class Name {
     public boolean isSimilar(Name other) {
         if(!isOtherNameNull(other)) {
             return isNameEqualsIgnoreCase(other) ||
-                 isNameSubsetOfOther(other) ||
-                 isNameSupersetOfOther(other);
+                    this.isSubsetOf(other) ||
+                    other.isSubsetOf(this);
         }
         return false;
-    }
-
-    /**
-     * Returns true if this is a superset of other name
-     * 
-     * @param subName the name that is the subset
-     * @return
-     */
-    private boolean isNameSupersetOfOther(Name subName) {
-        // if this is superset of subName, then subName is subset of this
-        return subName.isNameSubsetOfOther(this);
     }
 
     /**
@@ -96,10 +85,10 @@ public class Name {
      * @param superName the name that is the superset
      * @return
      */
-    private boolean isNameSubsetOfOther(Name superName) {
+    private boolean isSubsetOf(Name other) {
         // names are padded with whitespace at the start and end so that checks
         // are done against a whole word
-        String lcPaddedSuperName = " " + superName.fullName.toLowerCase() + " ";
+        String lcPaddedSuperName = " " + other.fullName.toLowerCase() + " ";
         String lcSubName = this.fullName.toLowerCase();
 
         // split on any non-alphabetic characters
